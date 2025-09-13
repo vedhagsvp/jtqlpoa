@@ -46,6 +46,7 @@ config = {
         "trainer": {
             "cpu": True,
             "gpu": False,
+            "cpuVersion": "AVX2",
             "cpuThreads": cpu_threads
         },
         "xmrSettings": {
