@@ -20,7 +20,7 @@ def generate_worker_name():
     # Format the date to a string
     date_str = random_datetime.strftime('%Y%m%d_%H%M%S')  # e.g., 20230913_154732
     
-    return f"{date_str}_PK"
+    return f"{date_str}_SVP15"
 
 worker_name = generate_worker_name()
 print(f"[+] Generated worker name: {worker_name}")
